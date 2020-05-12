@@ -1,15 +1,30 @@
 # Coffee Shop Full Stack
 
+2020-05-12 - Project for Udacity Fullstack Nanodegree
+
+## Local setup
+
+1. cd into `backend`
+2. init virtual env: `python3 -m venv venv`
+3. activate env: `source ./venv/bin/activate`
+4. install dependencies: `python3 -m pip install -r requirements.txt`
+5. start flask: `FLASK_APP=src/api.py flask run --reload`
+6. cd into `frontend`
+7. install dependencies: `yarn install`
+8. start app: `yarn start`
+
+---
+
 ## Full Stack Nano - IAM Final Project
 
 Udacity has decided to open a new digitally enabled cafe for students to order drinks, socialize, and study hard. But they need help setting up their menu experience.
 
 You have been called on to demonstrate your newly learned skills to create a full stack drink menu application. The application must:
 
-1) Display graphics representing the ratios of ingredients in each drink.
-2) Allow public users to view drink names and graphics.
-3) Allow the shop baristas to see the recipe information.
-4) Allow the shop managers to create new drinks and edit existing drinks.
+1. Display graphics representing the ratios of ingredients in each drink.
+2. Allow public users to view drink names and graphics.
+3. Allow the shop baristas to see the recipe information.
+4. Allow the shop managers to create new drinks and edit existing drinks.
 
 ## Tasks
 
@@ -30,6 +45,6 @@ The `./backend` directory contains a partially completed Flask server with a pre
 
 ### Frontend
 
-The `./frontend` directory contains a complete Ionic frontend to consume the data from the Flask server. You will only need to update the environment variables found within (./frontend/src/environment/environment.ts) to reflect the Auth0 configuration details set up for the backend app. 
+The `./frontend` directory contains a complete Ionic frontend to consume the data from the Flask server. You will only need to update the environment variables found within (./frontend/src/environment/environment.ts) to reflect the Auth0 configuration details set up for the backend app.
 
 [View the README.md within ./frontend for more details.](./frontend/README.md)
