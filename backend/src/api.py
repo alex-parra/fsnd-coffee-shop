@@ -39,7 +39,8 @@ returns status code 200 and json {"success": True, "drinks": drinks} where drink
     or appropriate status code indicating reason for failure
 '''
 @app.route('/drinks-detail', methods=['GET'])
-def list_drinks_detailed():
+@requires_auth('get:drinks-detail')
+def list_drinks_detailed(jwt):
     return jsonify({'success': True, 'drinks': [d.long() for d in Drink.query.all()]})
 
 
@@ -52,8 +53,8 @@ returns status code 200 and json {"success": True, "drinks": drink} where drink 
     or appropriate status code indicating reason for failure
 '''
 @app.route('/drinks', methods=['POST'])
-# TODO: require auth with post:drinks
-def create_drink():
+@requires_auth('post:drinks')
+def create_drink(jwt):
     title = request.json.get('title', None)
     recipe = request.json.get('recipe', None)
 
@@ -79,8 +80,9 @@ returns status code 200 and json {"success": True, "drinks": drink} where drink 
     or appropriate status code indicating reason for failure
 '''
 @app.route('/drinks/<int:id>', methods=['PATCH'])
-# TODO: require auth with patch:drinks
-def update_drink(id):
+@requires_auth('patch:drinks')
+def update_drink(jwt, id):
+    return jsonify({'id': id})
     drink = Drink.query.get(id)
     if drink is None:
         return abort(404)
@@ -103,8 +105,8 @@ returns status code 200 and json {"success": True, "delete": id} where id is the
     or appropriate status code indicating reason for failure
 '''
 @app.route('/drinks/<int:id>', methods=['DELETE'])
-# TODO: require auth with delete:drinks
-def delete_drink(id):
+@requires_auth('delete:drinks')
+def delete_drink(jwt, id):
     drink = Drink.query.get(id)
     if drink is None:
         return abort(404)
@@ -148,3 +150,8 @@ def unprocessable(error):
         "error": 401,
         "message": "unauthorized"
     }), 401
+
+
+@app.errorhandler(AuthError)
+def handle_auth_error(ex):
+    return jsonify(ex.error), ex.status_code
