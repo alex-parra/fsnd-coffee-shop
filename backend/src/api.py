@@ -11,7 +11,7 @@ app = Flask(__name__)
 setup_db(app)
 CORS(app)
 
-# db_drop_and_create_all()
+db_drop_and_create_all()
 
 # ROUTES
 @app.route('/')
@@ -62,8 +62,6 @@ def create_drink(jwt):
     if len(byTitle):
         return abort(422)
 
-    # TODO: Validate data
-
     newDrink = Drink(title=title, recipe=json.dumps(recipe))
     newDrink.insert()
     return jsonify({'success': True, 'drinks': [newDrink.long()]})
@@ -82,7 +80,6 @@ returns status code 200 and json {"success": True, "drinks": drink} where drink 
 @app.route('/drinks/<int:id>', methods=['PATCH'])
 @requires_auth('patch:drinks')
 def update_drink(jwt, id):
-    return jsonify({'id': id})
     drink = Drink.query.get(id)
     if drink is None:
         return abort(404)
@@ -117,7 +114,7 @@ def delete_drink(jwt, id):
 
 # Error Handling
 '''
-Example error handling for unprocessable entity
+Handle 422 unprocessable entity
 '''
 @app.errorhandler(422)
 def unprocessable(error):
@@ -129,7 +126,7 @@ def unprocessable(error):
 
 
 '''
-error handler should conform to general task above 
+Handle 404 not found
 '''
 @app.errorhandler(404)
 def unprocessable(error):
@@ -141,7 +138,7 @@ def unprocessable(error):
 
 
 '''
-error handler should conform to general task above 
+Handle 401 unauthorized
 '''
 @app.errorhandler(401)
 def unprocessable(error):
@@ -152,6 +149,21 @@ def unprocessable(error):
     }), 401
 
 
+'''
+Handle AuthError
+'''
 @app.errorhandler(AuthError)
 def handle_auth_error(ex):
     return jsonify(ex.error), ex.status_code
+
+
+'''
+Handle 500 server error
+'''
+@app.errorhandler(500)
+def unprocessable(error):
+    return jsonify({
+        "success": False,
+        "error": 500,
+        "message": error.description
+    }), 500
