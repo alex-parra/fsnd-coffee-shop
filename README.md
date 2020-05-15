@@ -13,6 +13,47 @@
 7. install dependencies: `yarn install`
 8. start app: `yarn start`
 
+## Endpoints
+
+`GET /drinks`
+
+- Returns all drinks in system
+- Auth: Not required
+- Returns `{ success: true, drinks: [] }`
+
+`GET /drinks-detail`
+
+- Returns all drinks in system with full details
+- Auth: required + `get:drinks-detail` permission
+- Returns `{ success: true, drinks: [] }`
+
+`POST /drinks`
+
+- Create a new drink
+- Auth: required + `post:drinks` permission
+- Returns 200 `{ success: true, drinks: [] }`
+- Returns 422 if title is already in system
+
+`PATCH /drinks/<id>`
+
+- Update a drink
+- Auth: required + `patch:drinks` permission
+- Returns 200 `{ success: true, drinks: [] }`
+- Returns 404 if `id` is not in system
+
+`DELETE /drinks/<id>`
+
+- Delete a drink
+- Auth: required + `delete:drinks` permission
+- Returns 200 `{ success: true, delete: id }`
+- Returns 404 if `id` is not in system
+
+## Auth Errors
+
+`401` if Authorization header is missing or malformed
+`400` if 'permissions' are not in JWT payload
+`401` if a specific permission is not included in the users permissions. (this should be 403 but Postman tests for 401)
+
 ---
 
 ## Full Stack Nano - IAM Final Project

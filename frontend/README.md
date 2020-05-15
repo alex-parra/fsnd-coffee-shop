@@ -1,6 +1,14 @@
 # Coffee Shop Frontend
 
-## Getting Setup
+## Run frontend locally
+
+1. cd into `frontend`
+2. install dependencies: `yarn install`
+3. start app: `yarn start`
+
+---
+
+## Original Frontend README from starter code
 
 > _tip_: this frontend is designed to work with [Flask-based Backend](../backend). It is recommended you stand up the backend first, test using Postman, and then the frontend should integrate smoothly.
 
@@ -12,7 +20,7 @@ This project depends on Nodejs and Node Package Manager (NPM). Before continuing
 
 #### Installing Ionic Cli
 
-The Ionic Command Line Interface is required to serve and build the frontend. Instructions for installing the CLI  is in the [Ionic Framework Docs](https://ionicframework.com/docs/installation/cli).
+The Ionic Command Line Interface is required to serve and build the frontend. Instructions for installing the CLI is in the [Ionic Framework Docs](https://ionicframework.com/docs/installation/cli).
 
 #### Installing project dependencies
 
@@ -22,7 +30,7 @@ This project uses NPM to manage software dependencies. NPM Relies on the package
 npm install
 ```
 
->_tip_: **npm i** is shorthand for **npm install**
+> _tip_: **npm i** is shorthand for **npm install**
 
 ## Required Tasks
 
@@ -40,8 +48,8 @@ Ionic ships with a useful development server which detects changes and transpile
 ionic serve
 ```
 
->_tip_: Do not use **ionic serve**  in production. Instead, build Ionic into a build artifact for your desired platforms.
-[Checkout the Ionic docs to learn more](https://ionicframework.com/docs/cli/commands/build)
+> _tip_: Do not use **ionic serve** in production. Instead, build Ionic into a build artifact for your desired platforms.
+> [Checkout the Ionic docs to learn more](https://ionicframework.com/docs/cli/commands/build)
 
 ## Key Software Design Relevant to Our Coursework
 
@@ -53,4 +61,4 @@ The authentication system used for this project is Auth0. `./src/services/auth.s
 
 ### Authorization
 
-The Auth0 JWT includes claims for permissions based on the user's role within the Auth0 system. This project makes use of these claims using the `auth.can(permission)` method which checks if particular permissions exist within the JWT permissions claim of the currently logged in user. This method is defined in  `./src/services/auth.service.ts` and is then used to enable and disable buttons in `./src/pages/drink-menu/drink-form/drink-form.html`.
+The Auth0 JWT includes claims for permissions based on the user's role within the Auth0 system. This project makes use of these claims using the `auth.can(permission)` method which checks if particular permissions exist within the JWT permissions claim of the currently logged in user. This method is defined in `./src/services/auth.service.ts` and is then used to enable and disable buttons in `./src/pages/drink-menu/drink-form/drink-form.html`.

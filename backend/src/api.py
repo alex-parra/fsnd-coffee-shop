@@ -16,7 +16,13 @@ db_drop_and_create_all()
 # ROUTES
 @app.route('/')
 def index():
-    return jsonify({'/drinks': 'List drinks'})
+    return jsonify({
+        'GET /drinks': 'List drinks (no auth)',
+        'GET /drinks-detail': 'List drinks with details (auth required + get:drinks-detail)',
+        'POST /drinks': 'Create a drink (auth required + post:drinks)',
+        'PATCH /drinks/<id>': 'Update a drink (auth required + patch:drinks',
+        'DELETE /drinks/<id>': 'Delete a drink (auth required + delete:drinks)'
+    })
 
 
 '''
