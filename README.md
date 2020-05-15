@@ -50,8 +50,8 @@
 
 ## Auth Errors
 
-`401` if Authorization header is missing or malformed
-`400` if 'permissions' are not in JWT payload
+`401` if Authorization header is missing or malformed  
+`400` if 'permissions' are not in JWT payload  
 `401` if a specific permission is not included in the users permissions. (this should be 403 but Postman tests for 401)
 
 ---
